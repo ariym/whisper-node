@@ -14,6 +14,7 @@ NodeJS bindings for OpenAI's Whisper.
 `
 npm i whisper-json
 `
+
 2. Download whisper model of choice (run in project root)
 
 `
