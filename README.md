@@ -7,12 +7,18 @@ NodeJS bindings for OpenAI's Whisper.
 - [Typescript](https://www.typescriptlang.org/)
 - [Whisper CPP (by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
 
-
 ## Installation
 
-```bash
+1. Add dependency to project
+
+`
 npm i whisper-json
-```
+`
+2. Download whisper model of choice (run in project root)
+
+`
+npx whisper-json download model-name
+`
 
 ## Usage
 

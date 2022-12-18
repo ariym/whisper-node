@@ -1,4 +1,1 @@
-function pizza() {
-  console.log('pizza');
-}
-pizza();
+// NodeJS bindings for Whisper CPP
