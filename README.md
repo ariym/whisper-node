@@ -2,10 +2,15 @@
 
 NodeJS bindings for OpenAI's Whisper.
 
+## Features
+
+- Output transcripts to JSON (and .txt .srt .vtt)
+- Runs on CPU (instead of GPU)
+
 ## Built with
 
 - [Typescript](https://www.typescriptlang.org/)
-- [Whisper CPP (by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
+- [Whisper OpenAI (using cpp port by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
 
 ## Installation
 
@@ -34,6 +39,15 @@ const params = {
 
 const transcript = await whisper(params);
 ```
+
+## Documentation
+
+### Project structure
+
+- **index.ts** entry
+- **shell.ts** run command, config env
+- **whisper-command.ts** format command to whisper syntax
+- **whisper/**: [Whisper (cpp port)](https://github.com/ggerganov/whisper.cpp) module
 
 ## Roadmap
 
