@@ -1,38 +1,31 @@
-# whisper-json
+# whisper-node
 
 NodeJS bindings for OpenAI's Whisper.
 
-## Features
-
 - Output transcripts to JSON (and .txt .srt .vtt)
 - Runs on CPU (instead of GPU)
-
-## Built with
-
-- [Typescript](https://www.typescriptlang.org/)
-- [Whisper OpenAI (using cpp port by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
 
 ## Installation
 
 1. Add dependency to project
 `
-npm i whisper-json
+npm i whisper-node
 `
 
-2. Download whisper model of choice (run in project root)
+2. Download whisper model(s) of choice
 `
-npx whisper-json download model-name
+npx whisper-node download
 `
 
 ## Usage
 
 ```javascript
-import whisper from 'whisper-json';
+import whisper from 'whisper-node';
 
 const wavFile = require('./file.wav'); // only wav files
 
 const params = {
-  file: wavFile,
+  filePath: wavfile,
   model: "medium",
   output: "JSON",
 }
@@ -40,16 +33,13 @@ const params = {
 const transcript = await whisper(params);
 ```
 
-## Documentation
+## Made with
 
-### Project structure
-
-- **index.ts** entry
-- **shell.ts** run command, config env
-- **whisper-command.ts** format command to whisper syntax
-- **whisper/**: [Whisper (cpp port)](https://github.com/ggerganov/whisper.cpp) module
+- [Whisper OpenAI (using cpp port by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
+- [ShellJS](https://www.npmjs.com/package/shelljs)
 
 ## Roadmap
 
+- [] Deprecate use of *path* package for browser and react-native compatibility
 - [] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support mp3 and video ripping
 - [] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
