@@ -3,6 +3,7 @@
 Node.js bindings for OpenAI's Whisper.
 
 ## Features
+
 - Output transcripts to JSON (in addition to .txt .srt .vtt)
 - Runs on CPU (not GPU)
 - Timestamp accurate to a single word
