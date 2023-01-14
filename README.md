@@ -1,9 +1,10 @@
 # whisper-node
 
-NodeJS bindings for OpenAI's Whisper.
+Node.js bindings for OpenAI's Whisper.
 
+## Features
 - Output transcripts to JSON (in addition to .txt .srt .vtt)
-- Runs on CPU (instead of GPU)
+- Runs on CPU (not GPU)
 - Timestamp accurate to a single word
 
 ## Installation
@@ -34,7 +35,7 @@ const transcript = await whisper(params);
 
 ### Sample Output
 
-```json
+```javascript
 [
   {
     "tsB":    "00:00:14.310",       // time stamp begin
@@ -51,6 +52,6 @@ const transcript = await whisper(params);
 
 ## Roadmap
 
-[] Deprecate use of *path* package for browser and react-native compatibility
-[] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support mp3 and video ripping
-[] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
+- [] Deprecate use of *path* package for browser and react-native compatibility
+- [] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support mp3 and video ripping
+- [] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
