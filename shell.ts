@@ -1,44 +1,55 @@
 // docs: https://www.npmjs.com/package/shelljs
 var shell = require('shelljs');
 
+// docs: https://github.com/ggerganov/whisper.cpp
+const WHISPER_CPP_PATH = "/lib/whisper.cpp";
+const WHISPER_CPP_MAIN_PATH = "./main";
 
-// return shelljs process
-export default async function whisperShell(command: string, options?: object | undefined): Promise<any> {
-  return new Promise((resolve, reject) => {
-    shell.exec(
-      command,
-      options ? options : shellOptions,
-      (code: number, stdout: string, stderr: string) => {
-        console.log("[shelljs] Exit code:", code);
-        // console.log("[shelljs] stderr:", stderr);
-
-        if (code === 0) {
-          console.log("the code is zero", code)
-          // return stdout;
-          // console.log("this is what we're resolving", stdout)
-          resolve(stdout);
-        }
-        // else console.log("this is the code so we return nothing", code);
-        else reject("no code 0");
-      }
-    );
-  });
-}
-
-
-// shelljs options
+// passed to shelljs exec
 const shellOptions = {
   silent: true, // don't print to console
   async: false
 }
 
 
-// change working directory
-shell.cd(__dirname + "/whisper");
+// return shelljs process
+export default async function whisperShell
+  (command: string, options?: object | undefined): Promise<any> {
+
+  return new Promise((resolve, reject) => {
+
+    shell.exec(
+      command,
+      options ? options : shellOptions,
+      (code: number, stdout: string, stderr: string) => {
+
+        if (code === 0) resolve(stdout);
+        else reject(stderr);
+
+      }
+    ).catch((e: any) => reject(e));
+
+  });
+
+}
+
+
+// change working directory to whisper submodule
+shell.cd(__dirname + WHISPER_CPP_PATH);
 
 
 // ensure command exists in local path
-if (!shell.which('./main')) {
-  shell.echo("Problem. First you need to run 'make' command in /whisper directory. Current shelljs directory: ", __dirname);
-  shell.exit(1);
+if (!shell.which(WHISPER_CPP_MAIN_PATH)) {
+  shell.echo("[whisper-node] Problem. whisper.pp not initialized. Current shelljs directory: ", __dirname);
+  shell.echo("[whisper-node] Attempting to run 'make' command in /whisper directory...");
+
+  shell.exec("make", shellOptions);
+
+  if (!shell.which(WHISPER_CPP_MAIN_PATH)) {
+    console.log("[whisper-node] Problem. 'make' command failed. Please run 'make' command in /whisper directory. Current shelljs directory: ", __dirname);
+    process.exit(1);
+  } else {
+    console.log("[whisper-node] 'make' command successful. Current shelljs directory: ", __dirname);
+  }
+
 }
