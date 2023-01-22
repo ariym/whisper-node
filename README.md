@@ -10,14 +10,16 @@ Node.js bindings for OpenAI's Whisper.
 
 ## Installation
 
+Your project must use typescript to continue.
+
 1. Add dependency to project
 `
 npm i whisper-node
 `
 
-2. Download whisper model(s) of choice
+2. Download whisper model of choice
 `
-npx whisper-node download
+npx whisper-node download-model base.en
 `
 
 ## Usage
@@ -53,6 +55,7 @@ const transcript = await whisper(params);
 
 ## Roadmap
 
+- [] Support for non-typescript projects
 - [] Deprecate use of *path* package for browser and react-native compatibility
 - [] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support mp3 and video ripping
 - [] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names

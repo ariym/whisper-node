@@ -1,15 +1,15 @@
 {
   "name": "whisper-node",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "NodeJS bindings for Whisper CPP.",
   "main": "index.ts",
   "scripts": {
     "start": "echo Starting with: npm run dev... && npm run dev",
-    "dev": "NODE_ENV='development' nodemon --watch './**/*.ts' --exec 'ts-node' index.ts",
-    "test": "./test.sh",
-    "init": ""
+    "dev": "NODE_ENV='development' nodemon --watch './**/*.ts' --exec 'ts-node' index.ts"
   },
-  "install": "./download-whisper.js",
+  "bin": {
+    "download-model": "download-model"
+  },
   "devDependencies": {
     "@types/node": "^18.11.13",
     "nodemon": "^2.0.20",
@@ -21,8 +21,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ariym/whisper-json.git"
+    "url": "https://github.com/ariym/whisper-node.git"
   },
+  "homepage": "https://npmjs.com/whisper-node",
   "author": "Ari",
   "license": "ISC",
   "keywords": [
