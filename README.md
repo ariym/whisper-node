@@ -14,14 +14,16 @@ Node.js bindings for OpenAI's Whisper.
 ## Installation
 
 1. Add dependency to project
-`
+
+```text
 npm install whisper-node
-`
+```
 
 2. Download whisper model of choice
-`
+
+```text
 npx whisper-node download
-`
+```
 
 ## Usage
 
