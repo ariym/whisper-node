@@ -6,7 +6,7 @@ import {whisper} from './index';
       "/Users/Shared/twospeak_clip.wav",
       {
         // modelPath: "/Users/Shared/custom-models/ggml-base.en.bin",
-        modelName: "base.en",
+        // modelName: "base.en",
         whisperOptions: { word_timestamps: true }
       }
     );
