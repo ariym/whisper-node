@@ -84,8 +84,8 @@ const transcript = await whisper(filePath, options);
 - [ ] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
 - [ ] [Implement WhisperX as optional alternative model](https://github.com/m-bain/whisperX) for diarization and higher precision timestamps (as alternative to C++ version)
 
-## Development
+## Modifying whisper-node
 
-```npm run dev``` - runs nodemon and live tsc on /src
+```npm run dev``` - runs nodemon and tsc on '/src/test.ts'
 
-```npm run build``` - runs tsc and output to /dist and set permission for dist/download.js
+```npm run build``` - runs tsc, outputs to '/dist' and gives sh permission to 'dist/download.js'
