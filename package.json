@@ -1,6 +1,6 @@
 {
   "name": "whisper-node",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "Node bindings for OpenAI's Whisper. Optimized for CPU.",
   "homepage": "https://npmjs.com/whisper-node",
   "author": "ariym",
