@@ -1,0 +1,1 @@
+export const DEFAULT_MODEL = "base.en";
