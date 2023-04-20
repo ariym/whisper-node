@@ -6,8 +6,9 @@
 
 import shell from 'shelljs';
 
-import readlineSync from 'readline-sync'
+import readlineSync from 'readline-sync';
 
+import {DEFAULT_MODEL, NODE_MODULES_MODELS_PATH} from './constants'
 
 const MODELS_LIST = [
   "tiny",
@@ -22,32 +23,16 @@ const MODELS_LIST = [
   "large"
 ];
 
-console.log(`
-| Model     | Disk   | RAM     |
-|-----------|--------|---------|
-| tiny      |  75 MB | ~390 MB |
-| tiny.en   |  75 MB | ~390 MB |
-| base      | 142 MB | ~500 MB |
-| base.en   | 142 MB | ~500 MB |
-| small     | 466 MB | ~1.0 GB |
-| small.en  | 466 MB | ~1.0 GB |
-| medium    | 1.5 GB | ~2.6 GB |
-| medium.en | 1.5 GB | ~2.6 GB |
-| large-v1  | 2.9 GB | ~4.7 GB |
-| large     | 2.9 GB | ~4.7 GB |
-`);
-
 
 const askModel = async () => {
   const answer = await readlineSync.question(`\n[whisper-node] Enter model name (e.g. 'base.en') or 'cancel' to exit\n(ENTER for base.en): `)
 
-  if(answer === "cancel") {
+  if (answer === "cancel") {
     console.log("[whisper-node] Exiting model downloader. Run again with: 'npx whisper-node download'");
     process.exit(0);
   }
   // user presses enter
   else if (answer === "") {
-    const DEFAULT_MODEL = "base.en";
     console.log("[whisper-node] Going with", DEFAULT_MODEL);
     return DEFAULT_MODEL;
   }
@@ -63,20 +48,40 @@ const askModel = async () => {
 
 
 
-export default async function downloadModel(dirPath: string = null) {
+export default async function downloadModel() {
   try {
     // shell.exec("echo $PWD");
-    shell.cd("node_modules/whisper-node/lib/whisper.cpp/models");
+    shell.cd(NODE_MODULES_MODELS_PATH);
+
+    console.log(`
+| Model     | Disk   | RAM     |
+|-----------|--------|---------|
+| tiny      |  75 MB | ~390 MB |
+| tiny.en   |  75 MB | ~390 MB |
+| base      | 142 MB | ~500 MB |
+| base.en   | 142 MB | ~500 MB |
+| small     | 466 MB | ~1.0 GB |
+| small.en  | 466 MB | ~1.0 GB |
+| medium    | 1.5 GB | ~2.6 GB |
+| medium.en | 1.5 GB | ~2.6 GB |
+| large-v1  | 2.9 GB | ~4.7 GB |
+| large     | 2.9 GB | ~4.7 GB |
+`);
 
     // ensure running in correct path
-    if(!shell.which("./download-ggml-model.sh")){
+    if (!shell.which("./download-ggml-model.sh")) {
       throw "whisper-node downloader is not being run from the correct path! cd to project root and run again."
     }
 
     const modelName = await askModel();
 
+    // default is .sh
+    let scriptPath = "./download-ggml-model.sh"
+    // windows .cmd version
+    if(process.platform === 'win32') scriptPath = "download-ggml-model.cmd";
+
     // todo: check if windows or unix to run bat command or .sh command
-    shell.exec(`./download-ggml-model.sh ${modelName}`);
+    shell.exec(`${scriptPath} ${modelName}`);
 
     console.log("[whisper-node] Attempting to compile model...");
 
