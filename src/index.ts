@@ -15,7 +15,7 @@ interface IOptions {
 export const whisper = async (filePath: string, options?: IOptions): Promise<ITranscriptLine[]> => {
 
   try {
-    console.log("[whisper-json] Transcribing:", filePath);
+    console.log("[whisper-node] Transcribing:", filePath, "\n");
 
     // todo: combine steps 1 & 2 into sepparate function called whisperCpp (createCppCommand + shell)
 
@@ -37,6 +37,6 @@ export const whisper = async (filePath: string, options?: IOptions): Promise<ITr
     return transcriptArray;
 
   } catch (error) {
-    console.log("[whisper-node] ERROR:", error);
+    console.log("[whisper-node] Problem:", error);
   }
 };
