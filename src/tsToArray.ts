@@ -5,27 +5,23 @@ export type ITranscriptLine = {
 }
 
 export default function parseTranscript(vtt: string): ITranscriptLine[] {
-  
-  const lines = vtt.split('[');
+  // 1. sepparate lines at timestamp's open bracket
+  const lines: string[] = vtt.split('[');
 
-  // 1a. Remove the first line, which is empty
+  // 2. remove the first line, which is empty
   lines.shift();
 
-  // 2. Convert each line into an object
-  const transcript = lines.map((line) => {
-    // 2a. split ts from speech
-    const lineSplit = line.split(']  ');
-    // 2b. split timestamp into begin and end
-    const timestamp = lineSplit[0].split(' --> ');
-    // 3c. remove \n from speech
-    const speech = lineSplit[1].replace('\n', '');
+  // 3. convert each line into an object
+  return lines.map(line => {
+    // 3a. split ts from speech
+    let [timestamp, speech] = line.split(']  ');
+    
+    // 3b. split timestamp into begin and end
+    const [start, end] = timestamp.split(' --> ');
+    
+    // 3c. remove \n from speech with regex
+    speech = speech.replace(/\n/g, '');
 
-    return {
-      start: timestamp[0],
-      end: timestamp[1],
-      speech,
-    }
+    return { start, end, speech };
   });
-
-  return transcript;
 }
