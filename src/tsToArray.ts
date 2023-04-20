@@ -1,16 +1,15 @@
-export type TranscriptType = {
-  tsB: string;
-  tsE: string;
+export type ITranscriptLine = {
+  start: string;
+  end: string;
   speech: string;
 }
 
-export default function parseTranscript(vtt: string): TranscriptType[] {
-  console.log("lines: ", vtt)
+export default function parseTranscript(vtt: string): ITranscriptLine[] {
+  
   const lines = vtt.split('[');
 
   // 1a. Remove the first line, which is empty
   lines.shift();
-
 
   // 2. Convert each line into an object
   const transcript = lines.map((line) => {
@@ -22,8 +21,8 @@ export default function parseTranscript(vtt: string): TranscriptType[] {
     const speech = lineSplit[1].replace('\n', '');
 
     return {
-      tsB: timestamp[0],
-      tsE: timestamp[1],
+      start: timestamp[0],
+      end: timestamp[1],
       speech,
     }
   });

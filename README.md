@@ -1,25 +1,27 @@
 # whisper-node
 
+[![npm downloads](https://img.shields.io/npm/dm/whisper-node)](https://npmjs.org/package/whisper-node)
+[![npm downloads](https://img.shields.io/npm/l/whisper-node)](https://npmjs.org/package/whisper-node)  
+[![npm downloads](https://img.shields.io/github/repo-size/ariym/whisper-node)](https://npmjs.org/package/whisper-node)
+
 Node.js bindings for OpenAI's Whisper.
 
 ## Features
 
-- Output transcripts to JSON (in addition to .txt .srt .vtt)
-- Runs on CPU (not GPU)
-- Timestamp accurate to a single word
+- Output transcripts to **JSON** (also .txt .srt .vtt)
+- **Optimized for CPU** (Including Apple Silicon ARM)
+- Timestamp precision to single word
 
 ## Installation
 
-Your project must use typescript to continue.
-
 1. Add dependency to project
 `
-npm i whisper-node
+npm install whisper-node
 `
 
 2. Download whisper model of choice
 `
-npx whisper-node download-model base.en
+npx whisper-node download
 `
 
 ## Usage
@@ -27,35 +29,62 @@ npx whisper-node download-model base.en
 ```javascript
 import whisper from 'whisper-node';
 
-const params = {
-  filePath: "example/sample.wav", // required
-  model:    "medium",             // default
-  output:   "JSON",               // default
-}
+const transcript = await whisper("example/sample.wav");
 
-const transcript = await whisper(params);
+console.log(transcript); // output: [ {start,end,speech} ]
 ```
 
-### Sample Output
+### Output (JSON)
 
 ```javascript
 [
   {
-    "tsB":    "00:00:14.310",       // time stamp begin
-    "tsE":    "00:00:20.480",       // time stamp end
-    "speech": "hey how's it going"  // transcription
-  },
+    "start":  "00:00:14.310", // time stamp begin
+    "end":    "00:00:16.480", // time stamp end
+    "speech": "howdy"         // transcription
+  }
 ]
+```
+
+### Usage with Additional Options
+
+```javascript
+import whisper from 'whisper-node';
+
+const filePath = "example/sample.wav", // required
+
+const options = {
+  modelName: "tiny.en",                   // default
+  modelPath: "/custom/path/to/model.bin", // use model in a custom directory
+  whisperOptions: {
+    gen_file_txt: false,      // outputs .txt file
+    gen_file_subtitle: false, // outputs .srt file
+    gen_file_vtt: false,      // outputs .vtt file
+    timestamp_size: 10,       // amount of dialogue per timestamp pair
+    word_timestamps: true     // timestamp for every word
+  }
+}
+
+const transcript = await whisper(filePath, options);
 ```
 
 ## Made with
 
-- [Whisper OpenAI (using cpp port by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
+- [Whisper OpenAI (using C++ port by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
 - [ShellJS](https://www.npmjs.com/package/shelljs)
 
 ## Roadmap
 
-- [] Support for non-typescript projects
-- [] Deprecate use of *path* package for browser and react-native compatibility
-- [] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support mp3 and video ripping
-- [] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
+- [x] Support projects not using Typescript
+- [x] Allow custom directory for storing models
+- [ ] Config files as alternative to model download cli
+- [ ] Remove *path*, *shelljs* and *prompt-sync* package for browser, react-native expo, and webassembly compatibility
+- [ ] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support more audio formats
+- [ ] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
+- [ ] [Implement WhisperX as optional alternative model](https://github.com/m-bain/whisperX) for diarization and higher precision timestamps (as alternative to C++ version)
+
+## Development
+
+```npm run dev``` - runs nodemon and live tsc on /src
+
+```npm run build``` - runs tsc and output to /dist and set permission for dist/download.js
