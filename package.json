@@ -34,7 +34,6 @@
     "Whisper",
     "CPP",
     "C++",
-    "Whisper",
     "Bindings",
     "Transcript",
     "Transcriber",
@@ -44,6 +43,6 @@
     "STT",
     "TTS",
     "SRT",
-    "diarization"
+    "Diarization"
   ]
 }
