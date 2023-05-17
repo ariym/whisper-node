@@ -1,8 +1,7 @@
 import path from 'path'
 import shell, {IShellOptions} from './shell';
-import { createCppCommand } from './whisper';
+import { IFlagTypes, createCppCommand } from './whisper';
 import transcriptToArray, { ITranscriptLine } from './tsToArray';
-import { IFlagTypes } from './types';
 
 
 interface IOptions {

@@ -1,7 +1,7 @@
 // todo: remove all imports from file
 import { existsSync } from 'fs';
 import { DEFAULT_MODEL } from './constants';
-import { CppCommandTypes, IFlagTypes } from './types';
+import { Language } from './types';
 
 // return as syntax for whisper.cpp command
 export const createCppCommand = ({ filePath, modelName = null, modelPath = null, options = { "word_timestamps": true } }: CppCommandTypes) =>
@@ -72,4 +72,22 @@ export const MODELS_LIST = {
   "medium.en": "ggml-medium.en.bin",
   "large-v1": "ggml-large-v1.bin",
   "large": "ggml-large.bin"
+}
+
+
+type CppCommandTypes = {
+  filePath: string,
+  modelName?: string,
+  modelPath?: string,
+  options?: IFlagTypes
+}
+
+
+export type IFlagTypes = {
+  "gen_file_txt"?: boolean,
+  "gen_file_subtitle"?: boolean,
+  "gen_file_vtt"?: boolean,
+  "timestamp_size"?: number,
+  "word_timestamps"?: boolean,
+  "language"?: Language
 }

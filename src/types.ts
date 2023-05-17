@@ -1,19 +1,3 @@
-export type CppCommandTypes = {
-    filePath: string,
-    modelName?: string,
-    modelPath?: string,
-    options?: IFlagTypes
-}
-
-export type IFlagTypes = {
-    "gen_file_txt"?: boolean,
-    "gen_file_subtitle"?: boolean,
-    "gen_file_vtt"?: boolean,
-    "timestamp_size"?: number,
-    "word_timestamps"?: boolean,
-    "language"?: Language
-}
-
 export type Language =
     | 'auto'
     | 'en'
