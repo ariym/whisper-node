@@ -4,7 +4,7 @@ import { IFlagTypes, createCppCommand } from './whisper';
 import transcriptToArray, { ITranscriptLine } from './tsToArray';
 
 
-interface IOptions {
+export interface IOptions {
   modelName?: string, // name of model stored in node_modules/whisper-node/lib/whisper.cpp/models
   modelPath?: string, // custom path for model
   whisperOptions?: IFlagTypes
