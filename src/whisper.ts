@@ -1,7 +1,7 @@
 // todo: remove all imports from file
 import { existsSync } from 'fs';
 import { DEFAULT_MODEL } from './constants';
-import { IFlagTypes } from './types';
+import { CppCommandTypes, IFlagTypes } from './types';
 
 // return as syntax for whisper.cpp command
 export const createCppCommand = ({ filePath, modelName = null, modelPath = null, options = { "word_timestamps": true } }: CppCommandTypes) =>
