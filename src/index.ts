@@ -7,6 +7,7 @@ import transcriptToArray, { ITranscriptLine } from './tsToArray';
 interface IOptions {
   modelName?: string, // name of model stored in node_modules/whisper-node/lib/whisper.cpp/models
   modelPath?: string, // custom path for model
+  language?: string, // custom path for model
   whisperOptions?: IFlagTypes
   shellOptions?: IShellOptions
 }
@@ -23,6 +24,7 @@ export const whisper = async (filePath: string, options?: IOptions): Promise<ITr
     const command = createCppCommand({
       filePath: path.normalize(filePath),
       modelName: options?.modelName,
+      language: options?.language,
       modelPath: options?.modelPath,
       options: options?.whisperOptions
     })
