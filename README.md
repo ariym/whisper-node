@@ -52,7 +52,7 @@ console.log(transcript); // output: [ {start,end,speech} ]
 ```javascript
 import whisper from 'whisper-node';
 
-const filePath = "example/sample.wav", // required
+const filePath = "example/sample.wav"; // required
 
 const options = {
   modelName: "tiny.en",                   // default
