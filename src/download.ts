@@ -80,8 +80,10 @@ export default async function downloadModel() {
     // windows .cmd version
     if(process.platform === 'win32') scriptPath = "download-ggml-model.cmd";
 
-    // todo: check if windows or unix to run bat command or .sh command
     shell.exec(`${scriptPath} ${modelName}`);
+
+    // TODO: add check in case download-ggml-model doesn't return a successful download.
+    // to prevent continuing to compile; that makes it harder for user to see which script failed.
 
     console.log("[whisper-node] Attempting to compile model...");
 
