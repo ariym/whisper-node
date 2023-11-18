@@ -89,3 +89,8 @@ const transcript = await whisper(filePath, options);
 ```npm run dev``` - runs nodemon and tsc on '/src/test.ts'
 
 ```npm run build``` - runs tsc, outputs to '/dist' and gives sh permission to 'dist/download.js'
+
+## Acknowledgements
+
+- [Georgi Gerganov](https://ggerganov.com/)
+- [Ari](https://aricv.com)
