@@ -3,7 +3,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/whisper-node)](https://npmjs.org/package/whisper-node)
 [![npm downloads](https://img.shields.io/npm/l/whisper-node)](https://npmjs.org/package/whisper-node)  
 
-Node.js bindings for OpenAI's Whisper.
+Node.js bindings for OpenAI's Whisper. Transcription done local.
 
 ## Features
 
@@ -56,13 +56,13 @@ const filePath = "example/sample.wav"; // required
 
 const options = {
   modelName: "tiny.en",                   // default
-  modelPath: "/custom/path/to/model.bin", // use model in a custom directory
+  // modelPath: "/custom/path/to/model.bin", // use model in a custom directory (cannot use along with 'modelName')
   whisperOptions: {
     gen_file_txt: false,      // outputs .txt file
     gen_file_subtitle: false, // outputs .srt file
     gen_file_vtt: false,      // outputs .vtt file
-    timestamp_size: 10,       // amount of dialogue per timestamp pair
     word_timestamps: true     // timestamp for every word
+    // timestamp_size: 0      // cannot use along with word_timestamps:true
   }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "whisper-node",
-  "version": "0.3.0",
-  "description": "Node bindings for OpenAI's Whisper. Optimized for CPU.",
+  "version": "0.3.1",
+  "description": "Node.js bindings for OpenAI's Whisper. Runs local on CPU.",
   "homepage": "https://npmjs.com/whisper-node",
   "author": "ariym",
   "main": "dist/index.js",
@@ -45,6 +45,7 @@
     "STT",
     "TTS",
     "SRT",
-    "Diarization"
+    "Diarization",
+    "local"
   ]
 }

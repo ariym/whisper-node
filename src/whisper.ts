@@ -46,12 +46,13 @@ const getFlags = (flags: IFlagTypes): string => {
   let s = "";
 
   // output files
-  if (flags["gen_file_txt"]) s += " -otxt";
-  if (flags["gen_file_subtitle"]) s += " -osrt";
-  if (flags["gen_file_vtt"]) s += " -ovtt";
+  if (flags.gen_file_txt) s += " -otxt";
+  if (flags.gen_file_subtitle) s += " -osrt";
+  if (flags.gen_file_vtt) s += " -ovtt";
   // timestamps
-  if (flags["timestamp_size"]) s += " -ml " + flags["timestamp-size"];
-  if (flags["word_timestamps"]) s += " -ml 1";
+  if (flags.timestamp_size && flags.word_timestamps) throw "Invalid option. Include 'timestamp_size' OR 'word_timestamps' NOT BOTH!"
+  if(flags.word_timestamps) s += " -ml 1"; // shorthand for timestamp_size:1
+  if(flags.timestamp_size) s += " -ml " + flags.timestamp_size;
 
   return s;
 }
