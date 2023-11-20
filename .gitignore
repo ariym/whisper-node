@@ -1,3 +1,6 @@
+# lock
+pnpm-lock.yaml
+
 whisper/
 .DS_Store
 .vscode/
