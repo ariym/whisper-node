@@ -14,8 +14,8 @@ export default function parseTranscript(vtt: string): ITranscriptLine[] {
   // 3. convert each line into an object
   return lines.map(line => {
     // 3a. split ts from speech
-    let [timestamp, speech] = line.split(']   ');
-    
+    let [timestamp, speech] = line.split(']  '); // two spaces (3 spaces doesn't work with punctuation like period . )
+
     // 3b. remove the open bracket of timestamp
     timestamp = timestamp.substring(1);
 
@@ -24,6 +24,9 @@ export default function parseTranscript(vtt: string): ITranscriptLine[] {
     
     // 3d. remove \n from speech with regex
     speech = speech.replace(/\n/g, '');
+    
+    // 3e. remove beginning space
+    speech = speech.replace(' ', '');
 
     return { start, end, speech };
   });
