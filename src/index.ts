@@ -40,3 +40,5 @@ export const whisper = async (filePath: string, options?: IOptions): Promise<ITr
     console.log("[whisper-node] Problem:", error);
   }
 };
+
+export default whisper;
