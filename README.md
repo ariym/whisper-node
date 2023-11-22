@@ -84,6 +84,7 @@ const transcript = await whisper(filePath, options);
 - [ ] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
 - [ ] [Implement WhisperX as optional alternative model](https://github.com/m-bain/whisperX) for diarization and higher precision timestamps (as alternative to C++ version)
 - [ ] Add option for viewing detected langauge as described in [Issue 16](https://github.com/ariym/whisper-node/issues/16)
+- [ ] Include typescript typescript types in ```d.ts``` file
 
 ## Modifying whisper-node
 
