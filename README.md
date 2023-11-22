@@ -85,6 +85,7 @@ const transcript = await whisper(filePath, options);
 - [ ] [Implement WhisperX as optional alternative model](https://github.com/m-bain/whisperX) for diarization and higher precision timestamps (as alternative to C++ version)
 - [ ] Add option for viewing detected langauge as described in [Issue 16](https://github.com/ariym/whisper-node/issues/16)
 - [ ] Include typescript typescript types in ```d.ts``` file
+- [ ] Add support for transcribing audio streams as already implemented in whisper.cpp
 
 ## Modifying whisper-node
 
