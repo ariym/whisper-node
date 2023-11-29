@@ -25,6 +25,8 @@ npm install whisper-node
 npx whisper-node download
 ```
 
+[Requirement for Windows: Install the ```make``` command from here.](https://gnuwin32.sourceforge.net/packages/make.htm)
+
 ## Usage
 
 ```javascript
@@ -70,6 +72,10 @@ const options = {
 const transcript = await whisper(filePath, options);
 ```
 
+Files must be .wav and 16Hz
+
+Example [FFmpeg](https://ffmpeg.org) command to convert an .mp3: ```ffmpeg -i input.mp3 -ar 16000 output.wav```
+
 ## Made with
 
 - [Whisper OpenAI (using C++ port by: ggerganov)](https://github.com/ggerganov/whisper.cpp)
@@ -81,7 +87,7 @@ const transcript = await whisper(filePath, options);
 - [x] Allow custom directory for storing models
 - [ ] Config files as alternative to model download cli
 - [ ] Remove *path*, *shelljs* and *prompt-sync* package for browser, react-native expo, and webassembly compatibility
-- [ ] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to support more audio formats
+- [ ] [fluent-ffmpeg](https://www.npmjs.com/package/fluent-ffmpeg) to automatically convert to 16Hz .wav files as well as support separating audio from video
 - [ ] [Pyanote diarization](https://huggingface.co/pyannote/speaker-diarization) for speaker names
 - [ ] [Implement WhisperX as optional alternative model](https://github.com/m-bain/whisperX) for diarization and higher precision timestamps (as alternative to C++ version)
 - [ ] Add option for viewing detected langauge as described in [Issue 16](https://github.com/ariym/whisper-node/issues/16)
