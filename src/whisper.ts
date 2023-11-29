@@ -42,6 +42,7 @@ const modelPathOrName = (mn: string, mp: string) => {
 
 
 // option flags list: https://github.com/ggerganov/whisper.cpp/blob/master/README.md?plain=1#L91
+// TODO: Replace with for loop that rejects all unrecognized keys
 const getFlags = (flags: IFlagTypes): string => {
   let s = "";
 
