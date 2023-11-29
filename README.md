@@ -55,7 +55,7 @@ import whisper from 'whisper-node';
 const filePath = "example/sample.wav"; // required
 
 const options = {
-  modelName: "tiny.en",                   // default
+  modelName: "base.en",       // default
   // modelPath: "/custom/path/to/model.bin", // use model in a custom directory (cannot use along with 'modelName')
   whisperOptions: {
     gen_file_txt: false,      // outputs .txt file
