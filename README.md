@@ -58,7 +58,7 @@ const options = {
   modelName: "base.en",       // default
   // modelPath: "/custom/path/to/model.bin", // use model in a custom directory (cannot use along with 'modelName')
   whisperOptions: {
-    language: 'auto'          // default is 'en' ('auto' for auto detect)
+    language: 'auto'          // default (use 'auto' for auto detect)
     gen_file_txt: false,      // outputs .txt file
     gen_file_subtitle: false, // outputs .srt file
     gen_file_vtt: false,      // outputs .vtt file

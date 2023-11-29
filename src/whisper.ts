@@ -50,9 +50,11 @@ const getFlags = (flags: IFlagTypes): string => {
   if (flags.gen_file_subtitle) s += " -osrt";
   if (flags.gen_file_vtt) s += " -ovtt";
   // timestamps
-  if (flags.timestamp_size && flags.word_timestamps) throw "Invalid option. Include 'timestamp_size' OR 'word_timestamps' NOT BOTH!"
+  if (flags.timestamp_size && flags.word_timestamps) throw "Invalid option pair. Use 'timestamp_size' OR 'word_timestamps'. NOT BOTH!"
   if(flags.word_timestamps) s += " -ml 1"; // shorthand for timestamp_size:1
-  if(flags.timestamp_size) s += " -ml " + flags.timestamp_size;
+  if(flags.timestamp_size) s += " -ml " + String(flags.timestamp_size);
+  // input language
+  if(flags.language) s += " -l " + flags.language;
 
   return s;
 }
@@ -86,5 +88,6 @@ export type IFlagTypes = {
   "gen_file_subtitle"?: boolean,
   "gen_file_vtt"?: boolean,
   "timestamp_size"?: number,
-  "word_timestamps"?: boolean
+  "word_timestamps"?: boolean,
+  "language"?: string
 }
