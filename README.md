@@ -19,7 +19,7 @@ Node.js bindings for OpenAI's Whisper. Transcription done local.
 npm install whisper-node
 ```
 
-2. Download whisper model of choice
+2. Download whisper model of choice [OPTIONAL]
 
 ```text
 npx whisper-node download
@@ -49,7 +49,7 @@ console.log(transcript); // output: [ {start,end,speech} ]
 ]
 ```
 
-### Usage with Additional Options
+### Full Options List
 
 ```javascript
 import whisper from 'whisper-node';
@@ -72,9 +72,11 @@ const options = {
 const transcript = await whisper(filePath, options);
 ```
 
+### Input File Format
+
 Files must be .wav and 16Hz
 
-Example [FFmpeg](https://ffmpeg.org) command to convert an .mp3: ```ffmpeg -i input.mp3 -ar 16000 output.wav```
+Example .mp3 file converted with an [FFmpeg](https://ffmpeg.org) command: ```ffmpeg -i input.mp3 -ar 16000 output.wav```
 
 ## Made with
 
