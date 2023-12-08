@@ -11,13 +11,18 @@ import {whisper} from './index';
         modelName: "base",
         whisperOptions: { 
           language: 'auto',
-          // word_timestamps: true,
-          timestamp_size: 10
+          word_timestamps: false,
+          timestamp_size: 1
         }
       }
     );
 
     console.log("transcript", transcript);
+
+    // prefer when word_timestamps=true
+    // console.table(transcript)
+
+    console.log(transcript.length, "rows.");
 
     
   } catch (error) {

@@ -1,7 +1,7 @@
 {
   "name": "whisper-node",
-  "version": "1.1.1",
-  "description": "Node.js bindings for OpenAI's Whisper. Runs local on CPU.",
+  "version": "1.1.2",
+  "description": "Local audio transcription on CPU. Node.js bindings for OpenAI's Whisper.",
   "homepage": "https://npmjs.com/whisper-node",
   "author": "ariym",
   "main": "dist/index.js",

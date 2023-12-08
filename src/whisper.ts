@@ -3,7 +3,7 @@ import { existsSync } from 'fs';
 import { DEFAULT_MODEL } from './constants';
 
 // return as syntax for whisper.cpp command
-export const createCppCommand = ({ filePath, modelName = null, modelPath = null, options = { "word_timestamps": true } }: CppCommandTypes) =>
+export const createCppCommand = ({ filePath, modelName = null, modelPath = null, options = null }: CppCommandTypes) =>
 
   `./main ${getFlags(options)} -m ${modelPathOrName(modelName, modelPath)} -f ${filePath}`;
 
