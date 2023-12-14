@@ -21,9 +21,9 @@ export const whisper = async (filePath: string, options?: IOptions): Promise<ITr
 
     // 1. create command string for whisper.cpp
     const command = createCppCommand({
-      filePath: path.normalize(filePath),
+      filePath: path.normalize(`"${filePath}"`),
       modelName: options?.modelName,
-      modelPath: options?.modelPath,
+      modelPath: options?.modelPath ? `"${options?.modelPath}"` : undefined,
       options: options?.whisperOptions
     })
 
