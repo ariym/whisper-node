@@ -5,13 +5,15 @@
   "homepage": "https://npmjs.com/whisper-node",
   "author": "ariym",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "download": "dist/download.js"
   },
   "scripts": {
     "start": "echo Starting with: npm run dev... && npm run dev",
     "dev": "NODE_ENV='development' nodemon --watch './**/*.ts' --exec 'ts-node' src/test.ts",
-    "build": "npx tsc && chmod +x dist/download.js",
+    "build": "tsc && chmod +x dist/download.js",
+    "prepare": "npm run build",
     "test": "node dist/test.js"
   },
   "devDependencies": {
