@@ -56,6 +56,7 @@ const getFlags = (flags: IFlagTypes): string => {
   if(flags.timestamp_size) s += " -ml " + String(flags.timestamp_size);
   // input language
   if(flags.language) s += " -l " + flags.language;
+  if(flags.no_timestamps) s += " -nt true ";
 
   return s;
 }
@@ -90,5 +91,6 @@ export type IFlagTypes = {
   "gen_file_vtt"?: boolean,
   "timestamp_size"?: number,
   "word_timestamps"?: boolean,
-  "language"?: string
+  "language"?: string,
+  "no_timestamps"?: boolean,
 }
