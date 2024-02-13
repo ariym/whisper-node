@@ -9,7 +9,8 @@ export default function parseTranscript(vtt: string): ITranscriptLine[] {
   const lines: string[] = vtt.match(/\[[0-9:.]+\s-->\s[0-9:.]+\].*/g);
 
   // 2. remove the first line, which is empty
-  lines.shift();
+  // unnecessary - this line is never empty
+  // lines.shift(); 
 
   // 3. convert each line into an object
   return lines.map(line => {
