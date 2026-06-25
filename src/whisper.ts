@@ -2,10 +2,17 @@
 import { existsSync } from 'fs';
 import { DEFAULT_MODEL } from './constants';
 
+// POSIX single-quote escaping for values interpolated into the shell command. whisper-node
+// runs the command through a POSIX shell (shelljs.exec, plus `./main` / `make`), so any
+// user-supplied value (file path, custom model path, language) must be quoted or shell
+// metacharacters (; | & $() backticks newlines …) execute as commands. Wraps the value in
+// single quotes and escapes embedded single quotes.
+const shellEscape = (value: string): string => `'${String(value).replace(/'/g, `'\\''`)}'`;
+
 // return as syntax for whisper.cpp command
 export const createCppCommand = ({ filePath, modelName = null, modelPath = null, options = null }: CppCommandTypes) =>
 
-  `./main ${getFlags(options)} -m ${modelPathOrName(modelName, modelPath)} -f ${filePath}`;
+  `./main ${getFlags(options)} -m ${modelPathOrName(modelName, modelPath)} -f ${shellEscape(filePath)}`;
 
 
 const modelPathOrName = (mn: string, mp: string) => {
@@ -24,7 +31,7 @@ const modelPathOrName = (mn: string, mp: string) => {
     return modelPath;
   }
   // modelpath
-  else if (mp) return mp;
+  else if (mp) return shellEscape(mp);
   // modelname
   else if (MODELS_LIST[mn]) {
     // second modelname check to verify is installed in directory
@@ -55,7 +62,7 @@ const getFlags = (flags: IFlagTypes): string => {
   if(flags.word_timestamps) s += " -ml 1"; // shorthand for timestamp_size:1
   if(flags.timestamp_size) s += " -ml " + String(flags.timestamp_size);
   // input language
-  if(flags.language) s += " -l " + flags.language;
+  if(flags.language) s += " -l " + shellEscape(flags.language);
 
   return s;
 }
